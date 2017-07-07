@@ -1,0 +1,49 @@
+package package1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Searchw
+ */
+@WebServlet("/Searchw")
+public class Searchw extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+   
+   
+        
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		String searchResult = request.getParameter("searchResult").toLowerCase();
+		String display = getInfo(searchResult);
+	    PrintWriter out = response.getWriter();
+		out.println(display); 
+		
+	}
+
+	public String getInfo(String searchResultLow) {
+		
+
+		if (searchResultLow.equals("harry potter"))
+			return "jk rowling";
+		else if (searchResultLow.equals("famous five"))
+			return "enid blyton";
+		else if (searchResultLow.equals("meluha"))
+			return "Amish Tripathi";
+		else
+			return "no result found ";
+		
+			
+		
+		
+		
+	}
+
+}
