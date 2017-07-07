@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="">
+search: <input type="text"  onkeyup="Function(this.value)">
+</form>
+
+<p> <span id="txtHint"></span></p> 
+
+<script>
+function Function(str) {
+  var xmlhttp = new XMLHttpRequest();
+  if(str == ""){
+  document.getElementById("txtHint").innerHTML = "";
+  return;
+  }
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(str,this);
+    }
+  }
+  xmlhttp.open("GET", "Search.xml", true);
+  xmlhttp.send();
+}
+
+function myFunction(str,xml) {
+  var x, i=0, xmlDoc, txt;
+  xmlDoc = xml.responseXML;
+   x = xmlDoc.getElementsByTagName("BOOKS");
+  
+  while (i<x.length){
+  var title = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+  var titleName = title.toUpperCase();
+  if(titleName.indexOf(str.toUpperCase()) > -1){
+  txt = x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+  }
+  i++;
+
+  }
+
+  document.getElementById("txtHint").innerHTML = txt;
+}
+
+
+</script>
+
+</body>
+</html>
