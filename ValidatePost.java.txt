@@ -1,0 +1,50 @@
+package package1;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class validate
+ */
+@WebServlet("/validatePost")
+public class validatePost extends HttpServlet {
+	
+private List<String> usernamesList;
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		
+		usernamesList = new ArrayList<String>();
+		
+		usernamesList.add("andy");
+		usernamesList.add("cindy");
+		usernamesList.add("bob");
+		
+	}
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String username = request.getParameter("username");
+		
+		PrintWriter out = response.getWriter();
+		
+		if(usernamesList.contains(username)){
+			out.println("Username taken");			
+		}else{
+			out.println("Username is available");
+		}
+		
+	}
+
+}
+

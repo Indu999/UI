@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+Year <input type="number"  id="bdayYear"><br><br>
+Month <input type="number"  id="bdayMonth"><br> <br>
+Date <input type="number"  id="bdayDate"><br><br>
+<button onclick="Age()"  > click </button>
+<p id="display"> Your age is</p>
+
+<p id="test1"></p>
+<p id="test"></p>
+
+<script>
+function Age(){
+var UYear = document.getElementById("bdayYear").value;
+var UMonth = document.getElementById("bdayMonth").value;
+var UDate = document.getElementById("bdayDate").value;
+
+
+var today = new Date();
+var tYear = today.getFullYear();
+var tMonth = today.getMonth()+1;
+var tDate = today.getDate();
+
+
+var age = tYear - UYear;
+
+if(UMonth > tMonth){
+age--;
+
+}
+
+document.getElementById("display").innerHTML = age;
+
+}
+
+
+</script>
+</body>
+</html> s
