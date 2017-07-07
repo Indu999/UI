@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+
+<body>
+
+<button onclick="books()"> Book Info </button>
+<p id="demo"></p>
+<script>
+function books(){
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        myFunction(this);
+    }
+};
+xhttp.open("GET", "Search.xml", true);
+xhttp.send();
+
+function myFunction(xml) {
+		var xmlDoc = xhttp.responseXML;
+		var x = xmlDoc.getElementsByTagName("BOOKS");
+		var list= "";	 
+	    for(i=0;i<x.length;i++){
+	    	txt =x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue ;
+	    	list = list+txt+"<br>";
+		}
+	    document.getElementById("demo").innerHTML = list;	 
+	 }
+    
+}
+
+</script>
+
+</body>
+</html>
